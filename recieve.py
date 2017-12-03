@@ -34,10 +34,11 @@ def debugReturnPSI():
 def returnPSI():
 	return debugReturnPSI()[0]	# wrap debug function for external use
 
-while True:
-	psi = debugReturnPSI()
-	print(psi[1],end=' ')
-	print(psi[0])
-	time.sleep(.01)
+def run():
+	while True:
+		psi = debugReturnPSI()
+		print(psi[1],end=' ')
+		print(psi[0])
+		time.sleep(.01)
 	
 
