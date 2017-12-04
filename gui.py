@@ -1,6 +1,7 @@
 from tkinter import Tk, Label, Button
 from recieve import returnPSI
 from settings import Settings
+from sleaks import silentLeak
 
 class TheGUI:
 	def __init__(self, master):
@@ -43,6 +44,7 @@ class TheGUI:
 
 		else:
 			psi = round(psi,3)
+			self.log(psi)
 			newPressure = str(psi) + " psi"
 			self.pressure['font'] = ('Courier',42)
 
@@ -57,11 +59,13 @@ class TheGUI:
 		set_gui = Settings(setroot)
 		
 	def leak(self):
-		pass
+		result = silentLeak()
+		self.status['text'] = result
 		# Check for silent leaks now
 
-	def log(self):
-		pass
+	def log(self,psi):
+		with open('logs','a') as file:
+			file.write(str(psi)+'\n')
 		# view the logs
 
 	def sendlog(self):

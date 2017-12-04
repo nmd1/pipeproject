@@ -63,5 +63,3 @@ def silentLeak():
 			statement = "Your pipes are good! No silent leaks."
 	return statement
 
-
-print(silentLeak())

@@ -14,7 +14,8 @@ class Settings:
 		master.bind('<Escape>',self.toggle_geom)   
 		
 		master.title("Settings")
-		self.labelnames = ['Threshold PSI','orange','potato','banana']
+		self.labelnames = ['Threshold PSI','Silent Leak Timeout', \
+'Silent Leak Check Time','Email', 'Wifi Network Name', 'Wifi Network Password']
 		self.settingsNumb = len(self.labelnames)
 		self.frames = []
 		
@@ -67,12 +68,30 @@ class SettingsHandler:
 	def __init__(self):
 		self.exists = os.path.exists('config')
 		self.leakInterval = 3	
-		
+		self.config = []
+		# self.tpsi = 0
+		# self.leaktime = ""
+		# self.email = ""
+		# self.wifiNet = ""
+		# self.wifiPass = ""
 
 	def exists(self):
 		return os.path.exists('config')
 
 	def getData(self):
-		pass
+		if(not self.exists()):
+	                setroot = Tk()
+	                set_gui = Settings(setroot)
+		else:
+			with open('config','r') as file:
+				self.config = [l.strip() for l in file]
+				
+	def setData(changelist):
+		for value,i in changelist:
+			if(value==""): continue
+			self.config[i] = value
+	
+	
+			
 
 
