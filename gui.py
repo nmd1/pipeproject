@@ -19,7 +19,7 @@ class TheGUI:
 		self.pressureTitle = Label(master, text="Water Pressure", font=("arial",24))
 		self.pressureTitle.pack()
 
-		self.pressure = Label(master, text="[Pressure should appear here]", font=("Courier",44))
+		self.pressure = Label(master, text="[Pressure should appear here]", font=("Courier",42))
 		self.pressure.pack()
 
 		self.settingsB = Button(master, text="Settings", command=self.settings, height = 5)
@@ -36,8 +36,16 @@ class TheGUI:
 
 		
 	def updatePSI(self):
-		psi = round(returnPSI(),3)
-		newPressure = str(psi) + " psi"
+		psi = returnPSI()
+		if(type(psi)==type("noo")):
+			newPressure = psi + ""
+			self.pressure['font'] = ('Courier',20)
+
+		else:
+			psi = round(psi,3)
+			newPressure = str(psi) + " psi"
+			self.pressure['font'] = ('Courier',42)
+
 		self.pressure['text'] = newPressure
 		self.pressure.update()
 

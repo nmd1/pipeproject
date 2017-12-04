@@ -33,7 +33,11 @@ def debugReturnPSI():
 	
 	
 def returnPSI():
-	return debugReturnPSI()[0]	# wrap debug function for external use
+	rawpsi = debugReturnPSI()[0]
+	if (rawpsi >= 0):
+		return rawpsi		# wrap debug function for external use
+	else:
+		return "Sensor not connected"
 
 def run():
 	while True:
