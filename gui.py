@@ -1,36 +1,64 @@
 from tkinter import Tk, Label, Button
 from recieve import returnPSI
+from settings import Settings
 
 class TheGUI:
 	def __init__(self, master):
 		self.master = master
-		
+		LEFT = 'left'		
 		self.master=master
 		pad=3
 		self._geom='200x200+0+0'
 		master.geometry("{0}x{1}+0+0".format( master.winfo_screenwidth()-pad, master.winfo_screenheight()-pad))
 		master.bind('<Escape>',self.toggle_geom)   
 	
-		master.title("Current Pressure")
+		master.title("Water Pressure Monitor")
+		
+		
 
-		self.pressureTitle = Label(master, text="Current Pressure Readings")
+		self.pressureTitle = Label(master, text="Water Pressure", font=("arial",24))
 		self.pressureTitle.pack()
-		self.pressure = Label(master, text="[Pressure should appear here]")
+
+		self.pressure = Label(master, text="[Pressure should appear here]", font=("Courier",44))
 		self.pressure.pack()
 
-		self.greet_button = Button(master, text="Greet", command=self.greet)
-		self.greet_button.pack()
+		self.settingsB = Button(master, text="Settings", command=self.settings, height = 5)
+		self.settingsB.pack(side=LEFT)
 
-		self.close_button = Button(master, text="Close", command=master.quit)
-		self.close_button.pack()
+		self.silentB = Button(master, text="Silent Leak Check (now)", command=self.leak, height=5)
+		self.silentB.pack(side=LEFT)
+
+		self.logB = Button(master, text="View Logs", command=self.log, height=5)
+		self.logB.pack(side=LEFT)
+
+		self.sendlogB = Button(master, text="Send Logs to Email", command=master.quit,height=5)
+		self.sendlogB.pack(side=LEFT)
+
 		
 	def updatePSI(self):
-		newPressure = str(returnPSI())
+		psi = round(returnPSI(),3)
+		newPressure = str(psi) + " psi"
 		self.pressure['text'] = newPressure
 		self.pressure.update()
 
 	def greet(self):
 		print("Greetings!")
+
+	def settings(self):
+		setroot = Tk()
+		set_gui = Settings(setroot)
+		
+	def leak(self):
+		pass
+		# Check for silent leaks now
+
+	def log(self):
+		pass
+		# view the logs
+
+	def sendlog(self):
+		pass
+		# send logs over email to user
 
 	def toggle_geom(self,event):
 		geom=self.master.winfo_geometry()

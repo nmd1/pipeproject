@@ -10,4 +10,4 @@ my_gui = TheGUI(root)
 
 while True:
 	my_gui.updatePSI()
-	time.sleep(.01)
+	time.sleep(2)
