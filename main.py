@@ -9,6 +9,5 @@ my_gui = TheGUI(root)
 # root.mainloop()
 
 while True:
-	print('test')
 	my_gui.updatePSI()
 	time.sleep(.01)

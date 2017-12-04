@@ -3,14 +3,15 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-pins = [0,5,13,19,26,16,21,20]
+pins = [0,5,13,19,26,16,21,20,6,12]
+# more pins: 6,12
 pins = list(reversed(pins)) 		# The pins are reversed in the arduino, so we flip it back here.
 
 for pin in pins:
 	GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def convert(val):
-	volts = (val/254.0) * 5;	# rescale value to voltage (2^8 wires)
+	volts = (val/1024.0) * 5;	# rescale value to voltage (2^8 wires)
 	outv = (volts/0.24) - 0.5;	# raw math (credit to cho)
 	psi = (outv * 10.1379);		# more math
 	return psi
