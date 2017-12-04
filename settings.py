@@ -1,5 +1,6 @@
 
 from tkinter import Tk, Label, Entry, Button, Frame,X
+import keyboard
 import os
 import datetime
 
@@ -11,12 +12,15 @@ class Settings:
 		self._geom='200x200+0+0'
 		master.geometry("{0}x{1}+0+0".format( master.winfo_screenwidth()-pad, master.winfo_screenheight()-pad))
 		master.bind('<Escape>',self.toggle_geom)   
-	
+		
 		master.title("Settings")
 		self.labelnames = ['Threshold PSI','orange','potato','banana']
 		self.settingsNumb = len(self.labelnames)
 		self.frames = []
 		
+		# Turn on the keyboard
+		self.keyboardprocess = keyboard.openKeyboard()
+
 		for n in range(self.settingsNumb+1):
 			frame = Frame(master)
 			frame.pack(side='top', anchor='w')
@@ -45,6 +49,7 @@ class Settings:
 	def kill(self):
 		# Save settings
 		print('killing myself')
+		keyboard.closeKeyboard(self.keyboardprocess)
 		self.master.destroy()
 		
 	def greet(self):
