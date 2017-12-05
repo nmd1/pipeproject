@@ -1,7 +1,5 @@
-30
-10
-60
-""
-""
-""
-""
+upsi 20.0
+ltimeout 60
+lpsi 10
+leaktime "1:30"
+email ""

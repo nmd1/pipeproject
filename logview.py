@@ -3,7 +3,7 @@ import keyboard
 import os 
 import datetime
 from gmail3 import sendFile
-from settings import SettingsData
+from settings import Settings
 
 
 class Logs:
@@ -37,8 +37,9 @@ class Logs:
 		self.master.destroy()
 		
 	def sendAway(self):
-		s = SettingsData()
-		email = s.getEmail()
+		s = Settings()
+		s.refresh()
+		email = s.get('email')
 		sendFile('Pressure Data!',email,'logs')
 		pass
 	
