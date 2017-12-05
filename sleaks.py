@@ -3,8 +3,8 @@ from time import sleep, time
 import recieve
 
 
-def silentLeak():
-	TIMEOUT = 60 #in seconds	
+def silentLeak(timeout):
+	TIMEOUT = timeout #in seconds
 
 	GPIO.setmode(GPIO.BCM)
 	motorpin = 1

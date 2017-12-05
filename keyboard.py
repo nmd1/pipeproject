@@ -2,7 +2,7 @@ import subprocess
 
 
 def openKeyboard():
-	p = subprocess.Popen(["matchbox-keyboard"])
+	p = subprocess.Popen(["xvkbd"])
 	print("Process ID of subprocess " + str(p.pid))
 	return p
 

@@ -14,7 +14,7 @@ def modernize(Module, Function, ArgumentList):
 
 # def modernize(Module, Function
 
-def getEmail(message,to):
+def sendEmail(message,to):
 	return modernize('gmail', 'sendEmail', [message,to])
 
 def sendFile(message,to,file):
