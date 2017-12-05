@@ -1,6 +1,6 @@
 """Send an email message from the user's account.
 """
-
+from __future__ import print_function
 import base64
 from email.mime.audio import MIMEAudio
 from email.mime.base import MIMEBase
@@ -20,6 +20,11 @@ def sendEmail(message, to):
   SendMessage(mes)
   print('message sent!')
 
+def sendFile(message, to, file):
+  subject = "PIPE MESSAGE"
+  mes =  CreateMessageWithAttachment('me', to, subject, message,'./',file)
+  SendMessage(mes)
+  print('file sent!')  
 
 def SendMessage(message):
   credentials = get_credentials()
@@ -41,10 +46,10 @@ def SendMessage(message):
   try:
     message = (service.users().messages().send(userId=user_id, body=message)
                .execute())
-    print 'Message Id: %s' % message['id']
+    print ('Message Id: ' + str(message['id']))
     return message
-  except errors.HttpError, error:
-    print 'An error occurred: %s' % error
+  except errors.HttpError,  error:
+    print ('An error occurred: ' + str(error))
 
 
 def CreateMessage(sender, to, subject, message_text):

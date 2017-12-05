@@ -63,7 +63,7 @@ class Settings:
 		self._geom=geom
 
 # settings functions
-class SettingsHandler:
+class SettingsData:
 	
 	def __init__(self):
 		self.exists = os.path.exists('config')
@@ -77,6 +77,10 @@ class SettingsHandler:
 
 	def exists(self):
 		return os.path.exists('config')
+
+	def getEmail(self):
+		return 'ndureus@bu.edu'
+
 
 	def getData(self):
 		if(not self.exists()):

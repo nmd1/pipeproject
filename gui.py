@@ -1,7 +1,10 @@
 from tkinter import Tk, Label, Button
+import datetime
+import time
 from recieve import returnPSI
 from settings import Settings
 from sleaks import silentLeak
+from logview import Logs
 
 class TheGUI:
 	def __init__(self, master):
@@ -29,7 +32,7 @@ class TheGUI:
 		self.silentB = Button(master, text="Silent Leak Check (now)", command=self.leak, height=5)
 		self.silentB.pack(side=LEFT)
 
-		self.logB = Button(master, text="View Logs", command=self.log, height=5)
+		self.logB = Button(master, text="View Logs", command=self.viewLog, height=5)
 		self.logB.pack(side=LEFT)
 
 		self.sendlogB = Button(master, text="Send Logs to Email", command=master.quit,height=5)
@@ -64,13 +67,19 @@ class TheGUI:
 		# Check for silent leaks now
 
 	def log(self,psi):
+		# Get a timestamp and put the data into a file 
+		stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') 
+		out = stamp + "> " + str(psi)
 		with open('logs','a') as file:
-			file.write(str(psi)+'\n')
-		# view the logs
+			file.write(str(out)+'\n')
+		
 
-	def sendlog(self):
-		pass
-		# send logs over email to user
+	def viewLog(self):
+		# view the lgos
+		logroot = Tk()
+		log_gui = Logs(logroot)
+		log_gui.update_textbox()
+		
 
 	def toggle_geom(self,event):
 		geom=self.master.winfo_geometry()
